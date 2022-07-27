@@ -13,4 +13,10 @@ void main() {
       binaryNumber2: "1111",
     ));
   });
+  test("Binary subtraction", (){
+    print(binarySubtraction(
+      binaryNumber: "11001010", 
+      binaryAmountToSubtract: "10011011",
+    ));
+  });
 }

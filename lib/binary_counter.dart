@@ -68,7 +68,52 @@ String binaryAddition({
   return result;
 }
 //TODO: Binary Subtraction
-
+String binarySubtraction({
+  required String binaryNumber,
+  required String binaryAmountToSubtract,
+}){
+  String result = "";
+  if(binaryAmountToSubtract.length > binaryNumber.length){
+    throw "Binary amount to subtract cannot be greater than the binary number";
+  }else{
+    //Fill in with zeroes
+    int difference = binaryNumber.length - binaryAmountToSubtract.length;
+    for(int i = 0; i < difference; i++){
+      binaryAmountToSubtract = "0$binaryAmountToSubtract";
+    }
+    if(binaryNumber.indexOf("1") > binaryAmountToSubtract.indexOf("1")){
+      throw "Binary amount to subtract cannot be greater than the binary number";
+    }
+  }
+  //TODO: Perform the binary subtraction
+  for(int i = binaryNumber.length - 1; 0 <= i; i--){
+    String bin1 = binaryNumber.substring(i,i+1);
+    String bin2 = binaryAmountToSubtract.substring(i,i+1);
+    if(int.parse(bin1) >= int.parse(bin2)){
+      int operationResult = int.parse(bin1) - int.parse(bin2);
+      result = "$operationResult$result";
+    }else{
+      //TODO: Borrow from the left
+      int indexOf1 = i;
+      bool foundA1 = false;
+      List<String> allValues = binaryNumber.split("");
+      do{
+        foundA1 = allValues[indexOf1] == "1";
+        if(foundA1 == false){
+          indexOf1--;
+        }
+      }while(foundA1 == false);
+      //TODO: Make all values to the right 1
+      allValues[indexOf1] = "0";
+      for(int o = indexOf1 + 1; o <= i; o++){
+        allValues[o] = "1";
+      }
+      binaryNumber = allValues.join("");
+      result = "1$result";
+    }
+  }
+  return result;
+}
 //TODO: Binary Multiplication
 
 //TODO: Binary Division
