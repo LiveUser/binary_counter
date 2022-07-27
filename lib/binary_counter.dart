@@ -16,7 +16,7 @@ String generateRandomBinaryNumber({
     return binaryResult;
   }
 }
-//TODO: Binary addition
+//Binary addition
 String binaryAddition({
   required String binaryNumber1,
   required String binaryNumber2,
@@ -38,7 +38,7 @@ String binaryAddition({
     //Nothing goes here
   }
   bool carryOne = false;
-  //TODO: Add the two numbers
+  //Add the two numbers
   for(int i = binaryNumber1.length - 1; 0 <= i; i--){
     String bin1 = binaryNumber1.substring(i,i+1);
     String bin2 = binaryNumber2.substring(i,i+1);
