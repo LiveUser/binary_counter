@@ -155,6 +155,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  number_system:
+    dependency: "direct dev"
+    description:
+      name: number_system
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5+7"
   package_config:
     dependency: transitive
     description:

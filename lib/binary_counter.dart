@@ -16,7 +16,7 @@ String generateRandomBinaryNumber({
     return binaryResult;
   }
 }
-//Binary addition
+//TODO: Fix Binary addition
 String binaryAddition({
   required String binaryNumber1,
   required String binaryNumber2,
@@ -42,22 +42,30 @@ String binaryAddition({
   for(int i = binaryNumber1.length - 1; 0 <= i; i--){
     String bin1 = binaryNumber1.substring(i,i+1);
     String bin2 = binaryNumber2.substring(i,i+1);
-    if(bin1 == "1" && bin2 == "1" && carryOne){
-      result = "1$result";
-      carryOne = true;
-    }else if(bin1 == "1" && bin2 == "1" && carryOne == false){
+    int parsedBin1 = int.parse(bin1);
+    int parsedBin2 = int.parse(bin2);
+    int sum = parsedBin1 + parsedBin2;
+    if(sum == 0 && carryOne == false){
       result = "0$result";
-      carryOne = true;
-    }else if(((bin1 == "1" && bin2 == "0") || (bin2 == "1" && bin1 == "0")) && carryOne == false){
+    }else if(sum == 0 && carryOne == true){
       result = "1$result";
       carryOne = false;
-    }else if(((bin1 == "1" && bin2 == "0") || (bin2 == "1" && bin1 == "0")) && carryOne){
+    }else if(sum == 1 && carryOne == false){
+      result = "1$result";
+      carryOne = false;
+    }else if(sum == 1 && carryOne == true){
       result = "0$result";
+      carryOne = true;
+    }else if(sum == 2 && carryOne == false){
+      result = "0$result";
+      carryOne = true;
+    }else if(sum == 2 && carryOne == true){
+      result = "1$result";
       carryOne = true;
     }else{
-      //Both are 0
-      result = "0$result";
-      carryOne = false;
+      print("This wasn't catched: $sum");
+      print(carryOne);
+      print("-----------------------");
     }
   }
   //If there is a carry one on the end add 1
@@ -67,7 +75,7 @@ String binaryAddition({
   //return the result
   return result;
 }
-//TODO: Binary Subtraction
+//Binary Subtraction
 String binarySubtraction({
   required String binaryNumber,
   required String binaryAmountToSubtract,
@@ -85,7 +93,7 @@ String binarySubtraction({
       throw "Binary amount to subtract cannot be greater than the binary number";
     }
   }
-  //TODO: Perform the binary subtraction
+  //Perform the binary subtraction
   for(int i = binaryNumber.length - 1; 0 <= i; i--){
     String bin1 = binaryNumber.substring(i,i+1);
     String bin2 = binaryAmountToSubtract.substring(i,i+1);
@@ -93,7 +101,7 @@ String binarySubtraction({
       int operationResult = int.parse(bin1) - int.parse(bin2);
       result = "$operationResult$result";
     }else{
-      //TODO: Borrow from the left
+      //Borrow from the left
       int indexOf1 = i;
       bool foundA1 = false;
       List<String> allValues = binaryNumber.split("");
@@ -103,7 +111,7 @@ String binarySubtraction({
           indexOf1--;
         }
       }while(foundA1 == false);
-      //TODO: Make all values to the right 1
+      //Make all values to the right 1
       allValues[indexOf1] = "0";
       for(int o = indexOf1 + 1; o <= i; o++){
         allValues[o] = "1";
@@ -115,7 +123,45 @@ String binarySubtraction({
   return result;
 }
 //TODO: Binary Multiplication
-
+String binaryMultiplication({
+  ///Number to multiply
+  required String binaryNumber,
+  ///Times it will be multiplied by
+  required String times,
+}){
+  String result = "";
+  for(int i = times.length - 1; 0 <= i; i--){
+    String thisStepsResult = "";
+    String bin1 = times.substring(i,i+1);
+    int parsedBin1 = int.parse(bin1);
+    //Add the necessary zeroes to the right of the number
+    for(int p = 0; p <= i; p++){
+      thisStepsResult += "0";
+    }
+    //Multiply
+    for(int e = binaryNumber.length - 1; 0 <= e; e--){
+      String bin2 = binaryNumber.substring(e,e+1);
+      int parsedBin2 = int.parse(bin2);
+      //print("$parsedBin1 * $parsedBin2 = ${parsedBin1 * parsedBin2}");
+      if(parsedBin1 * parsedBin2 == 1){
+        thisStepsResult = "1$thisStepsResult";
+      }else{
+        thisStepsResult = "0$thisStepsResult";
+      }
+    }
+    //print(thisStepsResult);
+    //Add the result
+    result = binaryAddition(
+      binaryNumber1: result, 
+      binaryNumber2: thisStepsResult,
+    );
+  }
+  //Remove unecessary zeroes
+  if(result.startsWith("0") && result.length > 1){
+    result = result.substring(1);
+  }
+  return result;
+}
 //TODO: Binary Division
 
 //TODO: Binary to DEC

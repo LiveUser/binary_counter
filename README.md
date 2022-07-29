@@ -29,6 +29,10 @@ binarySubtraction(
 );
 ~~~
 - Binary Multiplication
+~~~dart
+String result = binaryMultiplication(binaryNumber: "10", times: "10");
+print(result);
+~~~
 - Binary Division
 - Binary to DEC
 

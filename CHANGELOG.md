@@ -1,3 +1,8 @@
+## 0.0.3 - July 29 2022
+
+- Binary addition now seems to be working
+- Added binary multiplication
+
 ## 0.0.2 - July 27 2022
 
 - Binary subtraction added
