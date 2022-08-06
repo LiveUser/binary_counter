@@ -19,10 +19,14 @@ void main() {
     }
   });
   test("Binary subtraction", (){
-    print(binarySubtraction(
-      binaryNumber: "10", 
-      binaryAmountToSubtract: "1",
-    ));
+    String binaryNumber = "1100100";
+    for(int i = 0; i < 20; i++){
+      binaryNumber = binarySubtraction(
+        binaryNumber: binaryNumber, 
+        binaryAmountToSubtract: "101",
+      );
+      print(binaryNumber.binaryToDec());
+    }
   });
   test("Binary multiplication", ((){
     String result = binaryMultiplication(binaryNumber: "10", times: "10");

@@ -107,10 +107,10 @@ String binarySubtraction({
       List<String> allValues = binaryNumber.split("");
       do{
         foundA1 = allValues[indexOf1] == "1";
-        if(foundA1 == false){
+        if(foundA1 == false && indexOf1 != 0){
           indexOf1--;
         }
-      }while(foundA1 == false);
+      }while(foundA1 == false && indexOf1 != 0);
       //Make all values to the right 1
       allValues[indexOf1] = "0";
       for(int o = indexOf1 + 1; o <= i; o++){

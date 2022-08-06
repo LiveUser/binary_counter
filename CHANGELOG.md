@@ -1,3 +1,6 @@
+## 0.0.3+2
+- changed a condition to prevent an error
+
 ## 0.0.3 - July 29 2022
 
 - Binary addition now seems to be working
